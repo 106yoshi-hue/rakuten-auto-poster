@@ -12,14 +12,9 @@ THREADS_USER_ID = os.environ.get("THREADS_USER_ID")
 RAKUTEN_API_URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
 
 def fetch_first_item():
-    # デバッグ出力（IDの桁数と最初/最後の1文字だけ表示して確認）
-    if RAKUTEN_APP_ID:
-        print(f"★取得したAPP_IDの文字数: {len(RAKUTEN_APP_ID)}文字 (先頭: {RAKUTEN_APP_ID[0]}, 末尾: {RAKUTEN_APP_ID[-1]})")
-    else:
-        print("★RAKUTEN_APP_ID が空です")
-
-   params = {
+    params = {
         "applicationId": RAKUTEN_APP_ID,
+        "accessKey": ACCESS_KEY,
         "affiliateId": AFFILIATE_ID,
         "keyword": "おすすめ",
         "format": "json",
