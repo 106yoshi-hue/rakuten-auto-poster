@@ -2,6 +2,7 @@ import os
 import requests
 
 # Secretsから環境変数を取得
+RAKUTEN_APP_ID = os.environ.get("RAKUTEN_APP_ID")
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 AFFILIATE_ID = os.environ.get("AFFILIATE_ID")
 THREADS_ACCESS_KEY = os.environ.get("THREADS_ACCESS_KEY")
@@ -11,7 +12,9 @@ THREADS_USER_ID = os.environ.get("THREADS_USER_ID")
 RAKUTEN_API_URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
 
 def fetch_first_item():
+    # applicationId と accessKey の両方が必須です
     params = {
+        "applicationId": RAKUTEN_APP_ID,
         "accessKey": ACCESS_KEY,
         "affiliateId": AFFILIATE_ID,
         "keyword": "おすすめ",
@@ -42,7 +45,7 @@ def post_to_threads(text):
         print("★Threads APIの認証情報（THREADS_ACCESS_KEY または THREADS_USER_ID）が設定されていません。")
         return
 
-    # ステップ1: コンテナの作成
+    # ステップ1: コンテナの作成 (下書き作成)
     create_url = f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads"
     create_params = {
         "media_type": "TEXT",
@@ -59,7 +62,7 @@ def post_to_threads(text):
         print(f"★Threadsコンテナ作成エラー: {e.response.text}")
         raise e
 
-    # ステップ2: 投稿の公開
+    # ステップ2: 投稿の公開 (パブリッシュ)
     publish_url = f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads_publish"
     publish_params = {
         "creation_id": creation_id,
