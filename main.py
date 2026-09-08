@@ -3,8 +3,8 @@ import requests
 
 # Secretsから安全に取得
 APP_ID = os.environ.get("RAKUTEN_APP_ID")
-ACCESS_KEY = os.environ.get("RAKUTEN_ACCESS_KEY")
-AFFILIATE_ID = os.environ.get("RAKUTEN_AFFILIATE_ID")
+ACCESS_KEY = os.environ.get("ACCESS_KEY")
+AFFILIATE_ID = os.environ.get("AFFILIATE_ID")
 
 API_URL = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20220601"
 
