@@ -2,7 +2,7 @@ import os
 import requests
 
 # Secretsから環境変数を取得
-RAKUTEN_APP_ID = os.environ.get("APP_ID")
+RAKUTEN_APP_ID = os.environ.get("RAKUTEN_APP_ID")
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 AFFILIATE_ID = os.environ.get("AFFILIATE_ID")
 THREADS_ACCESS_KEY = os.environ.get("THREADS_ACCESS_KEY")
@@ -12,9 +12,8 @@ THREADS_USER_ID = os.environ.get("THREADS_USER_ID")
 RAKUTEN_API_URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
 
 def fetch_first_item():
-    # applicationId と accessKey の両方が必須です
     params = {
-        "applicationId": APP_ID,
+        "applicationId": RAKUTEN_APP_ID,
         "accessKey": ACCESS_KEY,
         "affiliateId": AFFILIATE_ID,
         "keyword": "おすすめ",
