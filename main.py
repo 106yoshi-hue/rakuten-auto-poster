@@ -18,8 +18,12 @@ def fetch_first_item():
     else:
         print("★RAKUTEN_APP_ID が空です")
 
-    params = {
-        # ... 以降はそのまま
+   params = {
+        "applicationId": RAKUTEN_APP_ID,
+        "affiliateId": AFFILIATE_ID,
+        "keyword": "おすすめ",
+        "format": "json",
+        "hits": 1
     }
     
     res = requests.get(RAKUTEN_API_URL, params=params)
