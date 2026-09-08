@@ -71,5 +71,7 @@ if __name__ == "__main__":
         content = fetch_first_item()
         if content:
             post_to_threads(content)
+    except requests.exceptions.HTTPError as e:
+        print(f"★楽天APIエラー詳細: {e.response.text}")
     except Exception as e:
         print(f"エラー発生: {e}")
