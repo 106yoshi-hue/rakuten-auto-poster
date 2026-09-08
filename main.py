@@ -1,19 +1,18 @@
 import os
 import requests
 
-# Secretsから取得
-RAKUTEN_APP_ID = os.environ.get("RAKUTEN_APP_ID")
+# GitHub Secretsから環境変数を取得
 ACCESS_KEY = os.environ.get("ACCESS_KEY")
 AFFILIATE_ID = os.environ.get("AFFILIATE_ID")
 THREADS_ACCESS_KEY = os.environ.get("THREADS_ACCESS_KEY")
 THREADS_USER_ID = os.environ.get("THREADS_USER_ID")
 
-# 楽天API（20220601版）
+# 楽天API（20220601版 エンドポイント）
 RAKUTEN_API_URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
 
 def fetch_first_item():
+    # 20220601版では accessKey パラメータで認証します
     params = {
-        "applicationId": RAKUTEN_APP_ID,
         "accessKey": ACCESS_KEY,
         "affiliateId": AFFILIATE_ID,
         "keyword": "おすすめ",
@@ -73,6 +72,9 @@ if __name__ == "__main__":
         if content:
             post_to_threads(content)
     except requests.exceptions.HTTPError as e:
+        print(f"★APIエラー詳細: {e.response.text}")
+    except Exception as e:
+        print(f"エラー発生: {e}")
         print(f"★楽天APIエラー詳細: {e.response.text}")
     except Exception as e:
         print(f"エラー発生: {e}")
