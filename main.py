@@ -8,7 +8,7 @@ AFFILIATE_ID = os.environ.get("AFFILIATE_ID")
 THREADS_ACCESS_KEY = os.environ.get("THREADS_ACCESS_KEY")
 THREADS_USER_ID = os.environ.get("THREADS_USER_ID")
 
-# 楽天API（標準版エンドポイント）
+# 楽天API（20220601版）
 RAKUTEN_API_URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
 
 def fetch_first_item():
